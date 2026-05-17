@@ -5,15 +5,29 @@
 ## 실행
 
 ```
-python scripts/score.py <솔루션 경로> --json out.json
+python scripts/score.py [repo_path] [--json out.json] [--markdown] [--quiet]
 ```
+
+- `repo_path` — 분석 대상 솔루션 루트. 생략 시 `.` (현재 디렉토리)
+- `--json PATH` — JSON 리포트 출력 경로
+- `--markdown` — stdout 마크다운 강제 (기본: `--json` 단독 시에도 요약 출력)
+- `--quiet` — stdout 억제
+
+의존성: Python 3 stdlib only.
 
 UTF-8 환경 (Windows PowerShell): `python -X utf8 scripts/score.py ...`
 
+예시:
+```
+python scripts/score.py C:\path\to\XLab --json out.json
+python -X utf8 scripts/score.py . --json out.json --quiet
+```
+
 ## 출력
 
-- `out.json` — 다운스트림 AI consumer 입력용 구조화 데이터
-- stdout — 마크다운 리포트
+- `out.json` — 다운스트림 AI consumer / 대시보드 입력용 구조화 데이터
+- stdout — 마크다운 리포트 (`--quiet` 미지정 시)
+- `assets/template.html` — 시각화 대시보드 템플릿 (JSON 스키마 v2.5 대상)
 
 ## Rubric (v2.5-100pt-team-AB)
 

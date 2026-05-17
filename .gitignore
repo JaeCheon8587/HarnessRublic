@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Local agent / editor config
+.claude/
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.bak[0-9]*
+*~
+*.swp
+
+# Generated output
+out_*.json
+*.log
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

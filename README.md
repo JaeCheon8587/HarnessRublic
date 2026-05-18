@@ -29,26 +29,25 @@ python -X utf8 scripts/score.py . --json out.json --quiet
 - stdout — 마크다운 리포트 (`--quiet` 미지정 시)
 - `assets/template.html` — 시각화 대시보드 템플릿 (JSON 스키마 v2.5 대상)
 
-## Rubric (v2.5-100pt-team-AB)
+## Rubric (v3.0-100pt-team-AB)
 
 | Cat | Name | Pts | Source |
 |-----|------|-----|--------|
-| A | Solution & App Coverage | 15 | team-template |
-| B | Document Structural Compliance | 20 | team-template |
-| C | Tribal Knowledge Externalization | 20 | legacy v2 |
-| D | Cross-Module Dependency Mapping | 15 | legacy v2 |
-| E | Verification & Quality Gates | 15 | legacy v2 |
-| F | Freshness & Self-Maintenance | 10 | legacy v2 |
-| G | Agent Performance Outcomes | 5 | legacy v2 |
+| A | Solution & App Coverage | 19 | team-template |
+| B | Document Structural Compliance | 25 | team-template |
+| C | Cross-Module Dependency Mapping | 19 | legacy v2 |
+| D | Verification & Quality Gates | 19 | legacy v2 |
+| E | Freshness & Self-Maintenance | 12 | legacy v2 |
+| F | Agent Performance Outcomes | 6 | legacy v2 |
 
 상세: [`references/scoring-rubric.md`](references/scoring-rubric.md)
 
-## JSON 스키마 (v2.5 신규 키)
+## JSON 스키마 (v3.0 신규 키)
 
 ```jsonc
 {
   "meta": {
-    "rubric_version": "v2.5-100pt-team-AB",
+    "rubric_version": "v3.0-100pt-team-AB",
     "solution_code": "XLAB",              // 신규 — Src/Mirero.<X>.<SOL>/ 패턴 추정
     "apps": [{                            // 신규 — Backend Services Overview ∪ FS
       "system_code": "LOADER",
@@ -58,7 +57,7 @@ python -X utf8 scripts/score.py . --json out.json --quiet
       "frd_count": 3, "adr_count": 1
     }]
   },
-  "categories": { "A": {...}, "B": {...}, ... "G": {...} },
+  "categories": { "A": {...}, "B": {...}, ... "F": {...} },
   "template_compliance": {                // 신규 — doc-type별 진단
     "Docs/LOADER/FRD/LOADER-FRD-001.md": {
       "kind": "app_frd",

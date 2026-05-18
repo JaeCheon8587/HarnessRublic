@@ -1,16 +1,15 @@
-# Team-Template Rubric · v2.5 (100 pt · 7 categories, A·B = team-template, C–G = legacy AI-Ready)
+# Team-Template Rubric · v3.0 (100 pt · 6 categories, A·B = team-template, C–F = legacy AI-Ready)
 
-이 문서는 `scripts/score.py` 의 단일 진실 기준입니다. **A·B 카테고리는 자사 솔루션 문서 표준 (`Docs/_templates/`) 준수도** 를 측정하고, C–G 는 기존 AI-Ready rubric (v2.1) 을 그대로 유지합니다. 후속 단계에서 C/D/E 도 team-template 으로 확장 예정.
+이 문서는 `scripts/score.py` 의 단일 진실 기준입니다. **A·B 카테고리는 자사 솔루션 문서 표준 (`Docs/_templates/`) 준수도** 를 측정하고, C–F 는 기존 AI-Ready rubric (v2.1) 을 비례 가중치로 유지합니다. (v2.5 의 `Tribal Knowledge Externalization` 카테고리는 본 프로젝트의 단일 루트 개발 워크플로우에 부적합하여 v3.0 에서 제거 후 가중치를 6개 카테고리에 비례 재분배.)
 
 | Cat | Name | Points | Source |
 |-----|------|--------|--------|
-| A | Solution & App Coverage | 15 | team-template |
-| B | Document Structural Compliance | 20 | team-template |
-| C | Tribal Knowledge Externalization | 20 | legacy v2 |
-| D | Cross-Module Dependency & Data Flow Mapping | 15 | legacy v2 |
-| E | Verification & Quality Gates | 15 | legacy v2 |
-| F | Freshness & Self-Maintenance | 10 | legacy v2 |
-| G | Agent Performance Outcomes | 5 | legacy v2 |
+| A | Solution & App Coverage | 19 | team-template |
+| B | Document Structural Compliance | 25 | team-template |
+| C | Cross-Module Dependency & Data Flow Mapping | 19 | legacy v2 |
+| D | Verification & Quality Gates | 19 | legacy v2 |
+| E | Freshness & Self-Maintenance | 12 | legacy v2 |
+| F | Agent Performance Outcomes | 6 | legacy v2 |
 
 **Total = 100**
 
@@ -18,7 +17,7 @@
 
 ---
 
-## A. Solution & App Coverage · /15 *(team-template)*
+## A. Solution & App Coverage · /19 *(team-template)*
 
 > 솔루션 내 모든 App 이 진입 문서 + Backend Services Overview 등재로 navigation 가능한가.
 
@@ -26,9 +25,9 @@
 
 ```
 Coverage = (진입 문서 보유 App 수) / (파일시스템 App 총수)
-점수    = round(Coverage × 15)
-         − 5 (root CLAUDE.md 부재)
-         − 2 × (Backend Services Overview 등재됐으나 폴더 없는 App 수)
+점수    = round(Coverage × 19)
+         − 6 (root CLAUDE.md 부재)
+         − 3 × (Backend Services Overview 등재됐으나 폴더 없는 App 수)
 ```
 
 - **App 식별**: `Docs/<App>/` 폴더명 ∪ `Src/Mirero.<Product>.<X>/App/<App>/` 폴더명 (대문자 정규화).
@@ -42,19 +41,19 @@ Coverage = (진입 문서 보유 App 수) / (파일시스템 App 총수)
 
 ---
 
-## B. Document Structural Compliance · /20 *(team-template)*
+## B. Document Structural Compliance · /25 *(team-template)*
 
 > 각 doc-type 이 템플릿 핵심 구조 (메타 표, 변경 이력, 핵심 섹션, 4단계 마커, 빈칸 금지) 를 따르는가.
 
 | Sub | Item | Points | Full-Score Criteria |
 |-----|------|--------|---------------------|
-| B1 | RouterCompleteness *(Auto)*    | 4 | root `CLAUDE.md` 핵심 섹션 (설계 문서 인덱스 / Backend Services Overview) 모두 존재 |
-| B2 | MetaTable & History *(Auto)*   | 4 | 모든 content/supporting 문서에 메타 표 필수 필드 (문서 ID·버전·작성 가정·관련 문서) + 변경 이력 표 존재 |
-| B3 | FourStageMarkers *(Auto)*      | 4 | 룰 풀 (DDD·OOP 룰 + 솔루션 ARCHITECTURE + 각 App-ARCHITECTURE) 에 반드시·허용·금지·절대 금지 4개 마커 모두 등장 |
-| B4 | SectionCompliance *(Auto)*     | 4 | doc-type 별 **핵심 섹션** 모두 등장 (전 섹션 강제 X — 부록 표 참조) |
-| B5 | NoBlankViolations *(Auto)*     | 4 | FRD 본문 빈칸 / N/A / placeholder (`{App}`, `{NNN}` 등) 잔존 0건 |
+| B1 | RouterCompleteness *(Auto)*    | 5 | root `CLAUDE.md` 핵심 섹션 (설계 문서 인덱스 / Backend Services Overview) 모두 존재 |
+| B2 | MetaTable & History *(Auto)*   | 5 | 모든 content/supporting 문서에 메타 표 필수 필드 (문서 ID·버전·작성 가정·관련 문서) + 변경 이력 표 존재 |
+| B3 | FourStageMarkers *(Auto)*      | 5 | 룰 풀 (DDD·OOP 룰 + 솔루션 ARCHITECTURE + 각 App-ARCHITECTURE) 에 반드시·허용·금지·절대 금지 4개 마커 모두 등장 |
+| B4 | SectionCompliance *(Auto)*     | 5 | doc-type 별 **핵심 섹션** 모두 등장 (전 섹션 강제 X — 부록 표 참조) |
+| B5 | NoBlankViolations *(Auto)*     | 5 | FRD 본문 빈칸 / N/A / placeholder (`{App}`, `{NNN}` 등) 잔존 0건 |
 
-각 sub-item 4점 만점 → 풀 통과율 × 4 (round).
+각 sub-item 5점 만점 → 풀 통과율 × 5 (round).
 
 **Per-kind 메타 필수 필드** (B2):
 - 일반 (PRD/FC/ARCHITECTURE/CATALOG): 문서 ID, 버전, 작성 가정, 관련 문서
@@ -71,87 +70,57 @@ Coverage = (진입 문서 보유 App 수) / (파일시스템 App 총수)
 
 ---
 
----
-
-## C. Tribal Knowledge Externalization · /20
-
-> 숨은 규칙, 실패 패턴, human-only knowledge가 구조화되었는가.
-
-### Five-Question Framework *(Heuristic + Manual)*
-
-각 핵심 module에 대해 다음 5개 질문에 답할 수 있으면 4점씩, 총 20점:
-
-1. **What does this module configure / own?** — `## Purpose`, "configures", "owns" 표현
-2. **What are common modification patterns?** — `## Patterns`, "common changes", "## How to"
-3. **What non-obvious patterns cause failures?** — `Why:`, `Note:`, `Gotcha`, `Don't`
-4. **What are the cross-module dependencies?** — "depends on", "imports", `## Cross-module`
-5. **What tribal knowledge is hidden in comments / history / human memory?** — `MEMORY.md` / `ADR` / `docs/decisions` 존재
-
-### Score band
-
-| Score | Criteria |
-|-------|----------|
-| 0     | senior engineer / Slack / 과거 PR에만 지식 존재 |
-| 5     | 일부 gotcha가 README / comment에 흩어짐 |
-| 10    | 반복 작업의 암묵지 일부 문서화 |
-| 15    | compatibility rule / naming / generated code rule / deprecated-but-required rule 정리 |
-| 20    | 식별된 tribal knowledge 대부분이 context file / checklist / playbook에 반영 + AI가 질의로 회수 가능 |
-
-자동 점수 = (5질문 통과 평균 × 20). 실제 깊이는 사람이 검증.
-
----
-
-## D. Cross-Module Dependency & Data Flow Mapping · /15
+## C. Cross-Module Dependency & Data Flow Mapping · /19
 
 > 변경 영향 범위를 AI가 추적할 수 있는가.
 
 | Score | Criteria |
 |-------|----------|
 | 0     | 변경 영향을 사람이 수동으로 추적 |
-| 5     | 일부 architecture diagram 또는 dependency note |
-| 10    | 주요 module 간 dependency / ownership 문서화 |
-| 15    | "What depends on X?" 에 graph / index / map으로 답 가능. repo / service / test / data flow ripple 추적 가능 |
+| 6     | 일부 architecture diagram 또는 dependency note |
+| 13    | 주요 module 간 dependency / ownership 문서화 |
+| 19    | "What depends on X?" 에 graph / index / map으로 답 가능. repo / service / test / data flow ripple 추적 가능 |
 
-**Auto checks:**
-- `docs/architecture.md`, `ARCHITECTURE.md`, `docs/dependency-graph*` 존재
-- `mermaid` / `graphviz` 다이어그램 fence 존재 (CLAUDE/AGENTS/ARCHITECTURE/ADR 등 확장 context 풀 검사)
-- 확장 context 풀 안에 `## Dependencies` / `Cross-module` 섹션
-- monorepo 의 `pnpm-workspace.yaml` / `turbo.json` / `nx.json` 으로 graph 도출 가능 여부
+**Auto checks (가중 배점):**
+- `ARCHITECTURE.md` / `docs/architecture.md` / `docs/dependency-graph*` 존재 → **+8**
+- `mermaid` 다이어그램 fence 존재 (확장 context 풀) → **+4**
+- 확장 context 의 절반 이상에 `## Dependencies` / `Cross-module` 섹션 → **+5** (절반 미만이지만 1건 이상 → +2)
+- monorepo 워크스페이스 (`pnpm-workspace.yaml` / `turbo.json` / `nx.json` / `lerna.json`) → **+2**
 
-**Why important.** 한 field change가 6개 subsystem에 ripple 되는 대규모 codebase에서 결정적. 이게 약하면 D를 깎는 것이 옳음.
+**Why important.** 한 field change가 6개 subsystem에 ripple 되는 대규모 codebase에서 결정적. 이게 약하면 C를 깎는 것이 옳음.
 
 ---
 
-## E. Verification & Quality Gates · /15
+## D. Verification & Quality Gates · /19
 
 > AI-generated context와 code change를 검증하는 체계가 있는가.
 
 | Sub | Item | Points | Full-Score Criteria |
 |-----|------|--------|---------------------|
-| E1 | Reference Accuracy *(Auto)*        | 5 | CLAUDE.md / context file이 언급한 file path · API · command 의 hallucination 0건 |
-| E2 | Independent Critic Review *(Manual)* | 4 | 최소 2-3 round 독립 review 또는 checklist (CODEOWNERS / review template / agent critic) |
-| E3 | Task Validation *(Auto)*           | 4 | 변경 유형별 build / test / lint / typecheck / e2e 검증 명령 제공 + 실제 실행 가능 |
-| E4 | Prompt / Workflow Tests *(Heuristic)* | 2 | 대표 AI task query를 실제 테스트 (`evals/`, agent test) |
+| D1 | Reference Accuracy *(Auto)*        | 6 | CLAUDE.md / context file이 언급한 file path · API · command 의 hallucination 0건 |
+| D2 | Independent Critic Review *(Manual)* | 5 | 최소 2-3 round 독립 review 또는 checklist (CODEOWNERS / review template / agent critic) |
+| D3 | Task Validation *(Auto)*           | 5 | 변경 유형별 build / test / lint / typecheck / e2e 검증 명령 제공 + 실제 실행 가능 |
+| D4 | Prompt / Workflow Tests *(Heuristic)* | 3 | 대표 AI task query를 실제 테스트 (`evals/`, agent test) |
 
-**E1 자동 채점 알고리즘:**
+**D1 자동 채점 알고리즘:**
 1. 모든 context file (`router + content + supporting`) 에서 `[A-Za-z0-9_./-]+\.(py|ts|tsx|js|md|sql|json|yaml|yml|toml)` 후보를 추출
 2. 각 후보를 repo 루트 기준으로 존재 검증
-3. `valid / total` 비율 → `round(ratio × 5)`
+3. `valid / total` 비율 → `round(ratio × 6)`
 
-> Meta 표현으로 "zero hallucinated paths"가 5점의 조건. 이것이 AI-ready의 핵심 — 검증되지 않은 context는 없는 것보다 **위험하다**.
+> Meta 표현으로 "zero hallucinated paths"가 6점의 조건. 이것이 AI-ready의 핵심 — 검증되지 않은 context는 없는 것보다 **위험하다**.
 
 ---
 
-## F. Freshness & Self-Maintenance · /10
+## E. Freshness & Self-Maintenance · /12
 
 > Context가 stale 해지지 않도록 자동 유지되는가.
 
 | Score | Criteria |
 |-------|----------|
 | 0     | 수동 관리 + stale 여부 불명 |
-| 3     | owner 있음 + 가끔 update |
-| 6     | CI / script로 broken path / reference 일부 검출 |
-| 10    | 주기적 file path validation, coverage gap detection, critic review, stale reference repair 자동 실행 |
+| 4     | owner 있음 + 가끔 update |
+| 7     | CI / script로 broken path / reference 일부 검출 |
+| 12    | 주기적 file path validation, coverage gap detection, critic review, stale reference repair 자동 실행 |
 
 **Auto checks:**
 - 각 CLAUDE.md mtime vs 같은 module 내부 코드 파일 latest mtime 비교 — drift 비율
@@ -163,7 +132,7 @@ Coverage = (진입 문서 보유 App 수) / (파일시스템 App 총수)
 
 ---
 
-## G. Agent Performance Outcomes · /5
+## F. Agent Performance Outcomes · /6
 
 > 실제 AI task 성공률 / 효율 개선이 측정되는가.
 
@@ -171,8 +140,8 @@ Coverage = (진입 문서 보유 App 수) / (파일시스템 App 총수)
 |-------|----------|
 | 0     | AI 성능 측정 없음 |
 | 2     | 정성적으로 "도움 된다" 수준 |
-| 3     | 대표 task success rate 또는 human intervention rate 측정 |
-| 5     | tool calls, token usage, task completion time, correctness, prompt pass rate를 before / after로 측정 |
+| 4     | 대표 task success rate 또는 human intervention rate 측정 |
+| 6     | tool calls, token usage, task completion time, correctness, prompt pass rate를 before / after로 측정 |
 
 **Tracked metrics (예시):**
 - AI task pass rate
@@ -219,7 +188,6 @@ Priority = Impact / Effort
 | 핵심 module에 CLAUDE.md 추가 | S (30-60 min) | task당 2-5 min × 주 N task |
 | god file (>500 lines) 분할 | M (1-3 hr/file) | 토큰 30-50% 절감 + 정확도 ↑ |
 | `## Cross-module deps` 섹션 추가 | S (30 min) | cascade bug 방지 |
-| MEMORY.md / ADR 도입 | M (2-4 hr 초기) | tribal knowledge 보존 (외부화) |
 | path validation CI 추가 | S (1 hr) | stale reference 자동 차단 |
 | agent eval test 추가 | L (4-8 hr) | AI 회귀 catch |
 | naming refactor | M-L | 일관성 향상 (낮은 우선순위) |
